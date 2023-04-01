@@ -66,7 +66,7 @@ ___
 ## Build locally
 
 ```shell
-git clone https://github.com/crazy-max/docker-rtorrent-rutorrent.git
+git clone https://github.com/norjms/docker-rtorrent-rutorrent.git
 cd docker-rtorrent-rutorrent
 
 # Build image and output to docker (default)
