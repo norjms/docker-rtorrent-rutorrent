@@ -16,13 +16,6 @@ ARG GEOIP2_RUTORRENT_VERSION=4ff2bde530bb8eef13af84e4413cedea97eda148
 ARG ALPINE_VERSION=3.17
 ARG ALPINE_S6_VERSION=${ALPINE_VERSION}-2.2.0.3
 
-FROM src AS src-themes
-ARG THEME_VERSION
-RUN <<EOT
-git clone https://github.com/norjms/3rd-Party-rutorrent-themes.git .
-git reset --hard $THEME_VERSION
-EOT
-
 FROM --platform=$BUILDPLATFORM alpine:${ALPINE_VERSION} AS src
 RUN apk --update --no-cache add curl git subversion tar tree xz
 WORKDIR /src
@@ -77,7 +70,7 @@ EOT
 FROM src AS src-rutorrent
 ARG RUTORRENT_VERSION
 RUN <<EOT
-git clone https://github.com/Novik/ruTorrent.git .
+git clone https://github.com/norjms/ruTorrent.git .
 git reset --hard $RUTORRENT_VERSION
 rm -rf .git* conf/users plugins/geoip share
 EOT
@@ -204,7 +197,6 @@ RUN tree ${DIST_PATH}
 FROM crazymax/alpine-s6:${ALPINE_S6_VERSION}
 COPY --from=builder /dist /
 COPY --from=src-rutorrent --chown=nobody:nogroup /src /var/www/rutorrent
-COPY --from=src-themes --chown=nobody:nogroup /src /var/www/rutorrent/plugins/theme/themes
 COPY --from=src-geoip2-rutorrent --chown=nobody:nogroup /src /var/www/rutorrent/plugins/geoip2
 COPY --from=src-mmdb /src /var/mmdb
 
