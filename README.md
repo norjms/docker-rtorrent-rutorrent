@@ -97,13 +97,14 @@ Image: crazymax/rtorrent-rutorrent:latest
    - linux/arm/v6
    - linux/arm/v7
    - linux/arm64
+   - darwin/arm64
 ```
 
 ## Environment variables
 
 ### General
 
-* `TZ`: The timezone assigned to the container (default `UTC`)
+* `TZ`: The timezone assigned to the container (default `America/Chicago`)
 * `PUID`: rTorrent user id (default `1000`)
 * `PGID`: rTorrent group id (default `1000`)
 * `WAN_IP`: [Public IP address](#wan-ip-address) reported to the tracker (auto if empty)

@@ -203,7 +203,7 @@ COPY --from=src-mmdb /src /var/mmdb
 ENV PYTHONPATH="$PYTHONPATH:/var/www/rutorrent" \
   S6_BEHAVIOUR_IF_STAGE2_FAILS="2" \
   S6_KILL_GRACETIME="10000" \
-  TZ="UTC" \
+  TZ="America/Chicago" \
   PUID="1000" \
   PGID="1000"
 
